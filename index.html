@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Invitation</title>
+
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Inter',sans-serif;
+  background:#0f0f14;
+  color:#fff;
+  text-align:center;
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  background:url('assets/cover.jpg') center/cover no-repeat;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.hero::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.65);
+}
+.hero-content{
+  position:relative;
+  z-index:1;
+}
+.subtitle{
+  letter-spacing:4px;
+  font-size:13px;
+  opacity:.8;
+}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:60px;
+  margin:15px 0;
+}
+.hero .date{
+  font-size:18px;
+}
+
+/* SECTION */
+.section{
+  padding:80px 20px;
+}
+.section.dark{
+  background:#15151c;
+}
+h2{
+  font-family:'Playfair Display',serif;
+  font-size:36px;
+  margin-bottom:20px;
+}
+
+/* COUNTDOWN */
+.countdown{
+  font-size:24px;
+  letter-spacing:2px;
+}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+}
+.gallery img{
+  width:100%;
+  border-radius:14px;
+  transition:.4s;
+}
+.gallery img:hover{
+  transform:scale(1.05);
+}
+
+/* RSVP */
+.rsvp{
+  max-width:400px;
+  margin:auto;
+}
+.rsvp input,.rsvp select{
+  width:100%;
+  padding:14px;
+  margin:10px 0;
+  border:none;
+  border-radius:10px;
+}
+.rsvp button{
+  padding:14px 30px;
+  border:none;
+  border-radius:50px;
+  background:#6c63ff;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  padding:40px;
+  font-size:14px;
+  opacity:.8;
+}
+
+/* ANIMASI */
+.fade{
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s;
+}
+.fade.show{
+  opacity:1;
+  transform:none;
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="subtitle">THE WEDDING OF</p>
+    <h1 id="names">Dedi & Bunga</h1>
+    <p class="date" id="dateText">20 Desember 2025</p>
+  </div>
+</section>
+
+<!-- EVENT -->
+<section class="section fade">
+  <h2>Wedding Day</h2>
+  <p id="timeText">10.00 WIB</p>
+  <p id="venueText">Gedung Serbaguna Modern</p>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="section dark fade">
+  <h2>Countdown</h2>
+  <div class="countdown" id="countdown"></div>
+</section>
+
+<!-- GALLERY -->
+<section class="section fade">
+  <h2>Our Moments</h2>
+  <div class="gallery">
+    <img src="assets/gallery1.jpg">
+    <img src="assets/gallery2.jpg">
+    <img src="assets/gallery3.jpg">
+  </div>
+</section>
+
+<!-- RSVP -->
+<section class="section dark fade">
+  <h2>RSVP</h2>
+  <form class="rsvp">
+    <input type="text" placeholder="Nama Anda" required>
+    <select required>
+      <option value="">Konfirmasi Kehadiran</option>
+      <option>Hadir</option>
+      <option>Tidak Hadir</option>
+    </select>
+    <button>Kirim</button>
+  </form>
+</section>
+
+<footer>
+  Terima kasih atas doa & kehadirannya 🤍
+</footer>
+
+<!-- MUSIC -->
+<audio autoplay loop>
+  <source src="music1.mp3.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// ===== DATA (PEMBELI EDIT DI SINI) =====
+const wedding = {
+  groom:"Dedi Pratama",
+  bride:"Bunga Maharani",
+  date:"20 Desember 2025",
+  time:"Pukul 10.00 WIB",
+  venue:"Gedung Serbaguna Modern",
+  eventDate:"2025-12-20T10:00:00"
+};
+
+// SET DATA
+document.getElementById("names").innerText =
+  wedding.groom + " & " + wedding.bride;
+document.getElementById("dateText").innerText = wedding.date;
+document.getElementById("timeText").innerText = wedding.time;
+document.getElementById("venueText").innerText = wedding.venue;
+
+// COUNTDOWN
+const target = new Date(wedding.eventDate).getTime();
+const cd = document.getElementById("countdown");
+
+setInterval(()=>{
+  const now = new Date().getTime();
+  const diff = target - now;
+
+  const d = Math.floor(diff/(1000*60*60*24));
+  const h = Math.floor((diff/(1000*60*60))%24);
+  const m = Math.floor((diff/(1000*60))%60);
+  const s = Math.floor((diff/1000)%60);
+
+  cd.innerHTML = `${d} Hari ${h} Jam ${m} Menit ${s} Detik`;
+},1000);
+
+// ANIMASI SCROLL
+const fades = document.querySelectorAll('.fade');
+window.addEventListener('scroll',()=>{
+  fades.forEach(el=>{
+    if(el.getBoundingClientRect().top < window.innerHeight - 100){
+      el.classList.add('show');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
