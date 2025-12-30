@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan | Maroon Locked Edition</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Great+Vibes&family=Amiri&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        /* KUNCI SCROLL AWAL */
+        body { background-color: #000; font-family: 'Montserrat', sans-serif; overflow: hidden; }
+
+        .portrait-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .slide {
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        /* BACKGROUNDS */
+         .bg-hero { background-image: url("bg\ \(4\).jpg"); }
+        .bg-ayat { background-image: url("bg\ \(3\).jpg"); }
+        .bg-mempelai { background-image: url("bgkuning.jpg"); }
+        .bg-acara { background-image: url("bg\ \(4\).jpg"); }
+        .bg-galeri { background-image: url("bgkuning.jpg"); }
+        .bg-ucapan { background-image: url("bg\ \(3\).jpg"); }
+        .bg-gift { background-image: url("bg\ \(4\).jpg"); }
+
+        .maroon-text { color: #8B0000; font-weight: bold; }
+        .font-tradisi { font-family: 'Cinzel', serif; }
+        .font-script { font-family: 'Great Vibes', cursive; }
+        .font-arab { font-family: 'Amiri', serif; }
+        
+        .gold-text {
+            background: linear-gradient(to bottom, #BF953F, #FCF6BA, #B38728, #AA771C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        .glass-card {
+            background: rgba(0, 0, 0, 0); 
+            border: 2px solid #8B0000;
+            border-radius: 20px;
+            width: 100%;
+            padding: 30px 20px;
+        }
+
+        .btn-maroon {
+            background: #8B0000; color: #fff; font-weight: bold; text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .music-btn {
+            position: fixed; bottom: 30px; right: 20px; z-index: 999;
+            width: 50px; height: 50px; background: #8B0000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; animation: rotate 6s linear infinite; cursor: pointer;
+            display: none; /* Muncul setelah dibuka */
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div class="portrait-container shadow-2xl">
+        
+        <div id="musicBtn" class="music-btn" onclick="toggleMusic()">
+            <i id="m-icon" class="fas fa-music text-xl"></i>
+        </div>
+        <audio id="audio" loop>
+            <source src="music (2)" type="audio/mpeg">
+        </audio>
+
+        <section id="hero" class="slide bg-hero text-center">
+            <div data-aos="fade-down">
+                <p class="uppercase tracking-[0.5em] text-[10px] mb-4 maroon-text">The Wedding of</p>
+                <h1 class="font-tradisi text-5xl gold-text mb-4">Raden & Ayu</h1>
+                <p class="text-xs tracking-[0.4em] mb-10 maroon-text">30 . 12 . 2025</p>
+                
+                <div class="flex justify-center gap-2 mb-12">
+                    <div class="glass-card !w-auto px-4 py-2 !border-maroon">
+                        <span id="days" class="block text-xl font-bold maroon-text">00</span>
+                        <small class="text-[8px] uppercase maroon-text">Hari</small>
+                    </div>
+                    <div class="glass-card !w-auto px-4 py-2 !border-maroon">
+                        <span id="hours" class="block text-xl font-bold maroon-text">00</span>
+                        <small class="text-[8px] uppercase maroon-text">Jam</small>
+                    </div>
+                    <div class="glass-card !w-auto px-4 py-2 !border-maroon">
+                        <span id="mins" class="block text-xl font-bold maroon-text">00</span>
+                        <small class="text-[8px] uppercase maroon-text">Menit</small>
+                    </div>
+                </div>
+
+                <button onclick="bukaUndangan()" class="btn-maroon px-12 py-4 rounded-full text-[10px] tracking-[0.2em]">
+                    BUKA UNDANGAN
+                </button>
+            </div>
+        </section>
+
+        <section id="ayat" class="slide bg-ayat">
+            <div class="glass-card text-center" data-aos="fade-up">
+                <i class="fas fa-quran maroon-text mb-6 text-2xl"></i>
+                <p class="font-arab text-3xl leading-loose mb-6 maroon-text" dir="rtl">
+                    وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ مِّنْ اَنْفُسِكُمْ اَزْوَاجًا لِّتَسْكُنُوْٓا اِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَّوَدَّةً وَّرَحْمَةً ۗ
+                </p>
+                <p class="maroon-text text-sm mb-6 leading-relaxed italic text-center">
+                    "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang."
+                </p>
+                <p class="font-bold maroon-text uppercase tracking-widest text-xs">( QS. AR-RUM: 21 )</p>
+            </div>
+        </section>
+
+        <section id="mempelai" class="slide bg-mempelai text-center">
+            <div class="glass-card" data-aos="fade-up">
+                <h2 class="font-tradisi maroon-text text-2xl mb-10 tracking-[0.2em]">MEMPELAI</h2>
+                <div class="space-y-12">
+                    <div>
+                        <img src="foto (1).jpg" class="w-32 h-32 mx-auto rounded-full border-2 border-[#8B0000] p-1 mb-4 shadow-xl">
+                        <h3 class="font-script text-4xl gold-text">Raden Wijaya</h3>
+                        <p class="text-[9px] mt-2 maroon-text italic tracking-widest uppercase">Putra Bpk. Hardjo & Ibu Siti</p>
+                    </div>
+                    <div class="maroon-text font-tradisi text-xl">&</div>
+                    <div>
+                        <img src="foto (2).jpg" class="w-32 h-32 mx-auto rounded-full border-2 border-[#8B0000] p-1 mb-4 shadow-xl">
+                        <h3 class="font-script text-4xl gold-text">Ayu Permata</h3>
+                        <p class="text-[9px] mt-2 maroon-text italic tracking-widest uppercase">Putri Bpk. Broto & Ibu Rahayu</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide bg-acara">
+            <div class="glass-card text-center" data-aos="fade-up">
+                <h2 class="font-tradisi maroon-text text-2xl mb-10 tracking-[0.2em]">DETAIL ACARA</h2>
+                <div class="space-y-6">
+                    <div class="border-b border-maroon/20 pb-6 text-center">
+                        <h3 class="font-tradisi maroon-text text-xl mb-2">Akad Nikah</h3>
+                        <p class="text-sm maroon-text font-bold">Selasa, 30 Des 2025</p>
+                        <p class="text-xs maroon-text mb-4 uppercase">Pukul 09.00 WIB</p>
+                        <a href="#" class="btn-maroon px-6 py-2 rounded-full text-[9px] inline-block">LOKASI MAPS</a>
+                    </div>
+                    <div class="pt-2 text-center">
+                        <h3 class="font-tradisi maroon-text text-xl mb-2">Resepsi</h3>
+                        <p class="text-sm maroon-text font-bold">Selasa, 30 Des 2025</p>
+                        <p class="text-xs maroon-text mb-4 uppercase">Pukul 11.00 WIB</p>
+                        <a href="#" class="btn-maroon px-6 py-2 rounded-full text-[9px] inline-block">LOKASI MAPS</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide bg-galeri">
+            <div class="glass-card text-center" data-aos="zoom-in">
+                <h2 class="font-tradisi maroon-text text-2xl mb-10 tracking-[0.2em]">GALERI FOTO</h2>
+                <div class="grid grid-cols-2 gap-2">
+                    <img src="foto (1).jpg" class="rounded-lg border border-maroon h-32 w-full object-cover">
+                    <img src="foto (2).jpg" class="rounded-lg border border-maroon h-32 w-full object-cover">
+                    <img src="foto (3).jpg" class="rounded-lg border border-maroon h-32 w-full object-cover">
+                    <img src="foto (4).jpg" class="rounded-lg border border-maroon h-32 w-full object-cover">
+                </div>
+            </div>
+        </section>
+
+        <section class="slide bg-ucapan">
+            <div class="glass-card text-center" data-aos="fade-up">
+                <h2 class="font-tradisi maroon-text text-2xl mb-8 tracking-[0.1em]">DOA & UCAPAN</h2>
+                <div class="text-left space-y-3">
+                    <input type="text" placeholder="Nama" class="w-full bg-transparent border border-maroon p-2 rounded maroon-text">
+                    <textarea placeholder="Ucapan..." class="w-full bg-transparent border border-maroon p-2 rounded maroon-text h-24"></textarea>
+                    <button class="btn-maroon w-full py-2 rounded text-xs">Kirim Doa</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide bg-gift text-center">
+            <div class="glass-card" data-aos="zoom-in">
+                <h2 class="font-tradisi maroon-text text-xl mb-8 tracking-[0.2em]">KADO DIGITAL</h2>
+                <div class="p-6 border-2 border-[#8B0000] rounded-xl text-center">
+                    <p class="font-bold text-[10px] mb-1 maroon-text uppercase tracking-widest">Bank BCA</p>
+                    <p class="text-2xl maroon-text font-bold mb-6 tracking-widest">1234567890</p>
+                    <button onclick="copyText('1234567890')" class="btn-maroon px-8 py-2 rounded-full text-[9px]">SALIN REKENING</button>
+                </div>
+            </div>
+            <footer class="mt-20">
+                <p class="text-[9px] maroon-text tracking-[0.5em] font-tradisi uppercase">Raden & Ayu Wedding 2025</p>
+            </footer>
+        </section>
+
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1200 });
+        
+        const audio = document.getElementById('audio');
+        const musicBtn = document.getElementById('musicBtn');
+        let playing = false;
+
+        function bukaUndangan() {
+            // Lepas kunci scroll
+            document.body.style.overflow = "auto";
+            // Jalankan musik
+            audio.play();
+            playing = true;
+            musicBtn.style.display = "flex";
+            // Scroll ke slide berikutnya
+            document.getElementById('ayat').scrollIntoView();
+        }
+
+        function toggleMusic() {
+            if (!playing) { audio.play(); } else { audio.pause(); }
+            playing = !playing;
+        }
+
+        // Countdown Script
+        const target = new Date("Dec 30, 2025 09:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = target - now;
+            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById('mins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        }, 1000);
+
+        function copyText(val) {
+            navigator.clipboard.writeText(val);
+            alert("Nomor rekening disalin!");
+        }
+    </script>
+</body>
+</html>
